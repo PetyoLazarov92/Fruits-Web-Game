@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>Игра</h2>
+
+
+
+<form action="/Home/FireTop">
+    <input type="range" name="position" min="0" max="100"/>
+    <input type="submit" value="Огън отгоре"/>
+</form>
+
+<form action="/Home/FireBottom">
+    <input type="range" name="position" min="0" max="100"/>
+    <input type="submit" value="Огън отдолу"/>
+</form>
+
+
+<form action="/Home/Reset">
+    <input type="submit" value="Нова игра"/>
+</form>
+
+@if (ViewBag.gameOver)
+{
+    <h2>Играта свърши!</h2>
+    <img src="~/images/explosion.png"/>
+}
+else if (ViewBag.danny)
+{
+    <h2>Аз Обичам Дани!</h2>
+    <img src="~/images/danny.png" />
+}
+else
+{
+    <h2>Поле за битка</h2>
+    for (int row = 0; row < ViewBag.rowsCount; row++)
+    {
+        for (int col = 0; col < ViewBag.colsCount; col++)
+        {
+            <img src='/images/@(ViewBag.fruits[row, col]).png'/>
+        }
+    
+        <br />
+    }
+    
+    <h2>Точки: <b>@ViewBag.score</b></h2>
+}
